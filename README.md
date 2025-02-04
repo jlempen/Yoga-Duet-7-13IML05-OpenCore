@@ -212,9 +212,7 @@ Using Acidanthera's [AppleALC.kext](https://github.com/acidanthera/AppleALC) to 
 ### VoodooHDA
 [VoodooHDA](https://github.com/CloverHackyColor/VoodooHDA) is way easier to set up and works just fine. Simply download, unzip and run my [VoodooHDA installer](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/blob/main/Sound%20Fix/VoodooHDA.zip). The installer will first ask for your password, then macOS will popup a notification asking you to allow the installation of a new kernel extension in the `Privacy & Security` pane of the `System Settings`. Then macOS will tell you it needs to reboot to enable the kernel extension. Agree to everything, reboot and you're done!
 
-> [!NOTE]
-> VoodooHDA will not switch automatically between the internal speakers and the headphones jack, you'll have to switch the output manually in the `Sound` pane of the `System Settings` or in the `Audio MIDI Setup` utility.
-
+VoodooHDA will not switch automatically between the internal speakers and the headphones jack, you'll have to switch the output manually in the `Sound` pane of the `System Settings` or in the `Audio MIDI Setup` utility.
 </details>
 
 <details>
