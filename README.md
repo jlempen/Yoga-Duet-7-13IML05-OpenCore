@@ -99,6 +99,7 @@ This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [
   <summary>What will probably never work</summary>
   
 ## What will probably never work
+- [ ] Internal Microphone
 - [ ] IR Camera (Windows Hello)
 </details>
 
@@ -199,6 +200,21 @@ Repeat for every UEFI variable you wish to revert to its default value.
 ## Enabling native HiDPI display settings in macOS
 On the installed macOS system, the default display resolution is already "Retina", as the native 3000x2000 resolution is scaled down to 1500x1000. To enable a few more native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(6) 3000x2000 Display`.
 I also recommend downloading and installing [BetterDisplay](https://github.com/waydabber/BetterDisplay) to change and manage the display resolutions on the Yoga Duet 7 13IML05.
+</details>
+
+<details>
+  <summary>Fixing the audio outputs</summary>
+
+## Fixing the audio outputs
+### AppleALC
+Using Acidanthera's [AppleALC.kext](https://github.com/acidanthera/AppleALC) to enable the internal speakers and headphones outputs is a nightmare on the Yoga Duet 7. I managed to get it mostly working by sending specific alc-verbs to the ALC287 (alcid=11) codec, but the power amp for the speakers enters some kind of low power state when running on battery after about 20 seconds. It is possible to wake up the amp by sending the same alc-verbs to the codec every 20 seconds, which is ridiculous. The amp doesn't enter low power mode when the laptop is running on the power adapter, though. Moreover, I haven't been able to make the outputs stereo. As I've spent way too much time trying to make this work, I'm giving up on AppleALC on the Yoga Duet 7.
+
+### VoodooHDA
+[VoodooHDA](https://github.com/CloverHackyColor/VoodooHDA) is way easier to set up and works just fine. Simply download, unzip and run my [VoodooHDA installer](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/blob/main/Sound%20Fix/VoodooHDA.zip). The installer will first ask for your password, then macOS will popup a notification asking you to allow the installation of a new kernel extension in the `Privacy & Security` pane of the `System Settings`. Then macOS will tell you it needs to reboot to enable the kernel extension. Agree to everything, reboot and you're done!
+
+> [!NOTE]
+> VoodooHDA will not switch automatically between the internal speakers and the headphones jack, you'll have to switch the output manually in the `Sound` pane of the `System Settings` or in the `Audio MIDI Setup` utility.
+
 </details>
 
 <details>
