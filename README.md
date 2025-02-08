@@ -221,6 +221,8 @@ As VoodooHDA will not switch automatically between the internal speakers and the
 I wrote a small launch daemon which will take care of that automatically on boot by running [Devon Weller's AudioSwitcher utility](https://github.com/deweller/switchaudio-osx). Simply download, unzip and run my [AudioSwitcher installer](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/blob/main/Sound%20Fix/AudioSwitcher.zip). Reboot and you're done!
 
 If for whatever reason you wish to uninstall the `AudioSwitcher` utility, run the installer again, select "Uninstall", then reboot.
+
+Both my `VoodooHDA` and `AudioSwitcher` installers will trigger MacOS's quarantine system on launch. This is meant to protect the user from installing unsigned software downloaded from the net. To easily circumvent this protection, simply open a Terminal, enter `xattr -d com.apple.quarantine ` and drag the installer to the Terminal window, then press the "Enter" key. Now you can launch the installer without macOS bitching about the installer being potentially unsafe.
 </details>
 
 <details>
