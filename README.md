@@ -13,7 +13,7 @@
 | SSD format       | APFS file system, GPT partition table |
 
 ## Abstract
-The Yoga Duet 7 13IML05 is a nearly perfect Hackintosh tablet. Its 13-inch display with a 16:10 aspect ratio similar to the MacBooks looks amazing, the Yoga Duet 7 sleeps and wakes quickly and the battery life is on par with an Intel MacBook Pro/Air.
+The Yoga Duet 7 13IML05 is a nearly perfect Hackintosh tablet. Its 13-inch display with a 16:10 aspect ratio similar to the MacBooks looks amazing, the Yoga Duet 7 sleeps and wakes quickly and the battery life is on par with an Intel MacBook Pro/Air. Only the internal microphone and the native media keys of the keyboard cover are non-functional. The latter may however be replaced by remapping the function keys, see notes below.
 
 The Yoga Duet 7 13IML05 works great as a macOS tablet. It won't entirely replace an iPad or even an Android tablet, but once set up properly, macOS is actually quite a nice tablet OS and almost on par with the Windows tablet experience. All the fancy Trackpad gestures available on macOS work on the Touchscreen as well and are very smooth and reliable. Folding the removable keyboard cover behind the tablet disables the keyboard and trackpad and folding it to the laptop position again re-enables both of them.
 
@@ -78,7 +78,7 @@ This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [
 - [x] WLAN
 - [x] Bluetooth
 - [x] Front and rear cameras
-- [x] Internal stereo speakers (`VoodooHDA.kext` or `AppleALC.kext` with `alcid=11` and alc-verbs)
+- [x] Internal stereo speakers (`VoodooHDA.kext` or `AppleALC.kext`, [see notes below](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore#fixing-the-audio-outputs))
 - [x] Headphones output
 - [x] Power and volume keys on the tablet
 - [x] Trackpad with native multi-touch gestures
@@ -92,6 +92,7 @@ This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [
   
 ## What needs some more work
 - [ ] MicroSD Card Reader
+- [ ] Native media keys on the keyboard cover
 - [ ] Accelerometers, gyroscope
 </details>
 
