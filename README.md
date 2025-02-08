@@ -222,7 +222,11 @@ I wrote a small launch daemon which will take care of that automatically on boot
 
 If for whatever reason you wish to uninstall the `AudioSwitcher` utility, run the installer again, select "Uninstall", then reboot.
 
-Both my `VoodooHDA` and `AudioSwitcher` installers will trigger MacOS's quarantine system on launch. This is meant to protect the user from installing unsigned software downloaded from the net. To easily circumvent this protection, simply open a Terminal, enter `xattr -d com.apple.quarantine ` and drag the installer to the Terminal window, then press the "Enter" key. Now you can launch the installer without macOS bitching about the installer being potentially unsafe.
+Both my `VoodooHDA` and `AudioSwitcher` installers will trigger MacOS's quarantine system on launch. This is meant to protect the user from installing unsigned software downloaded from the net. To easily circumvent this protection, simply open a Terminal, enter 
+```
+xattr -d com.apple.quarantine 
+```
+and drag the installer to the Terminal window, then press the "Enter" key. Make sure there's a `space` after the above command before dragging the installer to the Terminal window. Now you can launch the installer without macOS bitching about the installer being potentially unsafe.
 </details>
 
 <details>
