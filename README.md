@@ -219,7 +219,7 @@ Simply download, unzip and run my [VoodooHDA installer](https://github.com/jlemp
 
 If for whatever reason you wish to uninstall the `VoodooHDA` driver, run the installer again, select "Uninstall", then reboot.
 
-As VoodooHDA will not switch automatically between the headphones jack and the internal speakers, you'll have to switch the output manually in the `Sound` pane of the `System Settings` or in the `Audio MIDI Setup` utility.
+As `VoodooHDA` will not switch automatically between the headphones jack and the internal speakers, you'll have to switch the output manually in the `Sound` pane of the `System Settings` or in the `Audio MIDI Setup` utility.
 
 I wrote a small launch daemon which will take care of that automatically on boot by running [Devon Weller's AudioSwitcher utility](https://github.com/deweller/switchaudio-osx). Simply download, unzip and run my [AudioSwitcher installer](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/blob/main/Sound%20Fix/AudioSwitcher.zip). Reboot and you're done!
 
@@ -230,6 +230,15 @@ Both my `VoodooHDA` and `AudioSwitcher` installers will trigger MacOS's quaranti
 xattr -d com.apple.quarantine 
 ```
 and drag the installer to the Terminal window, then press the "Enter" key. Make sure there's a `space` after the above command before dragging the installer to the Terminal window. Now you can launch the installer without macOS bitching about the installer being potentially unsafe.
+</details>
+
+<details>
+   <summary>Remapping the media keys on the keyboard cover</summary>
+
+## Remapping the media keys on the keyboard cover
+As the native media keys on the keyboard cover are not functional yet (I'm pretty sure they used to work in macOS Monterey), simply remap the media keys to the function keys or any other keys or key combinations using the excellent open source [Karabiner-Elements keyboard customizer](https://karabiner-elements.pqrs.org/).
+
+For some odd reason, the native media keys on the keyboard cover start working just fine if you also enable the `Duet 7 USB Composite Device (SIPODEV)` trackpad in the `Devices` section of `Karabiner-Elements`. However, this makes the trackpad go totally crazy and I haven't been able to find a way to fix this problem. There must be some compatibility issue between `VoodooI2C.kext` and/or `VoodooI2CHID.kext` and the `Karabiner DriverKit VirtualHIDPointing 1.8.0 (pqrs.org)` driver installed by `Karabiner-Elements`.
 </details>
 
 <details>
