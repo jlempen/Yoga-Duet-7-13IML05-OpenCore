@@ -210,11 +210,16 @@ I also recommend downloading and installing [BetterDisplay](https://github.com/w
 Using Acidanthera's [AppleALC.kext](https://github.com/acidanthera/AppleALC) to enable the internal speakers and headphones outputs is a nightmare on the Yoga Duet 7. I managed to get it mostly working by sending specific alc-verbs to the ALC287 (alcid=11) codec, but the power amp for the speakers enters some kind of low power state when running on battery after about 20 seconds. It is possible to wake up the amp by sending the same alc-verbs to the codec every 20 seconds, which is ridiculous. The amp doesn't enter low power mode when the laptop is running on the power adapter, though. Moreover, I haven't been able to make the outputs stereo. As I've spent way too much time trying to make this work, I'm giving up on AppleALC on the Yoga Duet 7.
 
 ### VoodooHDA
-[VoodooHDA](https://github.com/CloverHackyColor/VoodooHDA) is way easier to set up and works just fine. Simply download, unzip and run my [VoodooHDA installer](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/blob/main/Sound%20Fix/VoodooHDA.zip). The installer will first ask for your password, then macOS will popup a notification asking you to allow the installation of a new kernel extension in the `Privacy & Security` pane of the `System Settings`. Then macOS will tell you it needs to reboot to enable the kernel extension. Agree to everything, reboot and you're done! 
+[VoodooHDA](https://github.com/CloverHackyColor/VoodooHDA) is way easier to set up and works just fine. 
+
+Simply download, unzip and run my [VoodooHDA installer](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/blob/main/Sound%20Fix/VoodooHDA.zip). The installer will first ask for your password, then macOS will popup a notification asking you to allow the installation of a new kernel extension in the `Privacy & Security` pane of the `System Settings`. Then macOS will tell you it needs to reboot to enable the kernel extension. Agree to everything, reboot and you're done! 
+
 If for whatever reason you wish to uninstall the `VoodooHDA` driver, run the installer again, select "Uninstall", then reboot.
 
 As VoodooHDA will not switch automatically between the internal speakers and the headphones jack, you'll have to switch the output manually in the `Sound` pane of the `System Settings` or in the `Audio MIDI Setup` utility.
+
 I wrote a small utility called `AudioSwitcher` which will take care of that automatically on boot by installing a launch daemon. Simply download, unzip and run my [AudioSwitcher installer](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/blob/main/Sound%20Fix/AudioSwitcher.zip). Reboot and you're done!
+
 If for whatever reason you wish to uninstall the `AudioSwitcher` utility, run the installer again, select "Uninstall", then reboot.
 </details>
 
