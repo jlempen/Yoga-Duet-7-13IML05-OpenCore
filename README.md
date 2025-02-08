@@ -216,7 +216,7 @@ Simply download, unzip and run my [VoodooHDA installer](https://github.com/jlemp
 
 If for whatever reason you wish to uninstall the `VoodooHDA` driver, run the installer again, select "Uninstall", then reboot.
 
-As VoodooHDA will not switch automatically between the internal speakers and the headphones jack, you'll have to switch the output manually in the `Sound` pane of the `System Settings` or in the `Audio MIDI Setup` utility.
+As VoodooHDA will not switch automatically between the headphones jack and the internal speakers, you'll have to switch the output manually in the `Sound` pane of the `System Settings` or in the `Audio MIDI Setup` utility.
 
 I wrote a small launch daemon which will take care of that automatically on boot by running [Devon Weller's AudioSwitcher utility](https://github.com/deweller/switchaudio-osx). Simply download, unzip and run my [AudioSwitcher installer](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/blob/main/Sound%20Fix/AudioSwitcher.zip). Reboot and you're done!
 
@@ -238,7 +238,7 @@ and drag the installer to the Terminal window, then press the "Enter" key. Make 
 
 <img width="282" alt="Display Rotation Menu" src="https://github.com/user-attachments/assets/ac058eda-6a75-4979-9f3c-907a8837f07f">
 
-The first time you rotate the display to a portrait orientation, the resolution is set to 1280x1920, which is way too small for the SGO2's display. You'll need to head over to the `Displays` tab in the `System Settings` and set the only other available resolution, 640x960, which is quite perfect on our Surface Go 2 in portrait orientation.
+The first time you rotate the display to a portrait orientation, the resolution is set to 1280x1920, which is way too small for the SGO2's display. You'll need to head over to the `Displays` tab in the `System Settings` and set the only other available resolution, 640x960, which is quite perfect on our Yoga Duet 7 in portrait orientation.
 
 However, once the display is in portrait orientation, it is very likely that the menu bar will not be able to show the Display Rotation Menu widget anymore because there's not enough space to display every widget in the narrow portrait-mode menu bar. To fix this, hold down the `Command` key while dragging the Display Rotation Menu widget next to the macOS `Control Center` widget. If there is still not enough space to show the widget, you could also change the size of the clock by disabling the `Show date` and/or `Show the day of the week` items or even change the style of the clock to `Analog` in the `Clock Options` of macOS.
 
@@ -247,7 +247,7 @@ However, once the display is in portrait orientation, it is very likely that the
 ### Rotating the display with BetterTouchTool
 [BetterTouchTool](https://folivora.ai/) by folivora.ai is a great, feature packed app that allows you to customize various input devices on your Mac.
 
-With BetterTouchTool, you could define customised Trackpad/Touchscreen gestures to rotate your Surface Go 2's display. 
+With BetterTouchTool, you could define customised Trackpad/Touchscreen gestures to rotate your Yoga Duet 7's display. 
 
 You could for instance assign a Four-Finger Double-Tap gesture to the Display Rotation Menu widget's keyboard shortcut `CTRL-OPTION-COMMAND-0` (as in "zero") to switch back to landscape orientation. 
 
@@ -268,7 +268,7 @@ macOS has a very nice On-Screen Keyboard readily available in the Accessibility 
 Navigate to `System Settings -> Lock Screen -> Accessibility Options -> Accessibility Keyboard -> Enable` to enable the On-Screen Keyboard on the Lock Screen.
 
 ### Showing/hiding the On-Screen Keyboard with touchscreen gestures
-The most convenient way to show/hide the On-Screen Keyboard when using the Surface Go 2 as a tablet is with a touchscreen gesture. Here's how to set this up: navigate to `System Settings -> Accessibility -> Shortcuts` and uncheck every option but `Accessibility Keyboard`. This enables the keyboard shortcut `OPTION-COMMAND-F5` to show/hide the On-Screen Keyboard. Now use [BetterTouchTool](https://folivora.ai/) to assign this keyboard shortcut to a Trackpad/Touchscreen gesture. 
+The most convenient way to show/hide the On-Screen Keyboard when using the Yoga Duet 7 as a tablet is with a touchscreen gesture. Here's how to set this up: navigate to `System Settings -> Accessibility -> Shortcuts` and uncheck every option but `Accessibility Keyboard`. This enables the keyboard shortcut `OPTION-COMMAND-F5` to show/hide the On-Screen Keyboard. Now use [BetterTouchTool](https://folivora.ai/) to assign this keyboard shortcut to a Trackpad/Touchscreen gesture. 
 </details>
 
 <details>
