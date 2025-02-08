@@ -238,7 +238,7 @@ and drag the installer to the Terminal window, then press the "Enter" key. Make 
 ## Remapping the media keys on the keyboard cover
 As the native media keys on the keyboard cover are not functional yet (I'm pretty sure they used to work in macOS Monterey), simply remap the media keys to the function keys or any other keys or key combinations using the excellent open source [Karabiner-Elements keyboard customizer](https://karabiner-elements.pqrs.org/).
 
-For some odd reason, the native media keys on the keyboard cover start working just fine if you also enable the `Duet 7 USB Composite Device (SIPODEV)` trackpad in the `Devices` section of `Karabiner-Elements`. However, this makes the trackpad go totally crazy and I haven't been able to find a way to fix this problem. There must be some compatibility issue between `VoodooI2C.kext` and/or `VoodooI2CHID.kext` and the `Karabiner DriverKit VirtualHIDPointing 1.8.0 (pqrs.org)` driver installed by `Karabiner-Elements`.
+For some odd reason, the native media keys on the keyboard cover start working just fine if you also enable the `Duet 7 USB Composite Device (SIPODEV)` trackpad in the `Devices` section of `Karabiner-Elements`. However, this makes the trackpad go totally crazy and I haven't been able to find a way to fix this problem. There must be some compatibility issue between `VoodooI2C.kext` and/or `VoodooI2CHID.kext` and the `Karabiner DriverKit VirtualHIDPointing 1.8.0 (pqrs.org)` driver installed by `Karabiner-Elements`. [This issue](https://github.com/pqrs-org/Karabiner-Elements/issues/4041) on the `Karabiner-Elements` GitHub repo references the issue.
 </details>
 
 <details>
