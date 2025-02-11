@@ -163,9 +163,9 @@ Finally, edit `config.plist` and set `Kernel -> Quirks -> AppleCpuPmCfgLock` and
 ## Increasing DVMT Gfx Memory to improve iGPU performance
 1. Boot into OpenCore
 2. Press Space to see the list of tools
-3. Select `Set DVMT to 64M`
+3. Select `Set DVMT Pre-Allocated to 64M`
 4. Press enter
-5. Then select `Set Total GFX Mem to MAX`
+5. Then select `Set DVMT Total GFX Mem to MAX`
 6. Press enter
 7. Restart
 
