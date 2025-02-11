@@ -112,7 +112,7 @@ To enter the UEFI Settings, power on your Yoga Duet 7 13IML05 and press and hold
 
 The `Secure Boot` setting ***must be disabled to boot macOS***.
 
-All other settings may remain on their default values and won't prevent macOS from booting, but keep in mind that every disabled device saves power and increases the battery runtime. For example, as the fingerprint reader won't work in macOS, disabling the device in the UEFI Settings is recommended unless you plan on using another operating system on the device as well. 
+All other settings may remain on their default values and won't prevent macOS from booting, but keep in mind that every disabled device saves power and increases the battery runtime.
 </details>
 
 <details>
@@ -187,12 +187,31 @@ Finally, edit `config.plist` and delete or comment out `framebuffer-fbmem` and `
 To revert all changes made to the UEFI Firmware variables to their default values, enable the corresponding entries in the `config.plist` file under `Misc` -> `Tools`, restart to the OpenCore menu, press space to see the list of tools and revert the changes by launching the option you wish to revert to its default value:
 - `Enable CFG Lock`
 - `Enable Overclocking Lock`
-- `Set DVMT to default (32M)`
-- `Set Total GFX Mem to default (256M)`
+- `Set DVMT Pre-Allocated to default (32M)`
+- `Set DVMT Total GFX Mem to default (256M)`
 
 Repeat for every UEFI variable you wish to revert to its default value.
 
 ***Please be aware that you need to revert any changes made to your `config.plist` file before reverting the UEFI variables to their default values, or macOS won't boot anymore!***
+</details>
+
+<details>
+  <summary>Fixing Hibernate Mode 25</summary>
+  
+## Fixing Hibernate Mode 25
+If for whatever reason `Hibernate Mode 25` is not working correctly on your system, you should reset the `Power Management` settings and rebuild the `sleepimage` file. To do so, open the `Terminal` and enter the following commands, then reboot for the changes to take effect:
+```
+sudo rm /Library/Preferences/com.apple.PowerManagement*
+sudo rm /var/vm/sleepimage
+sudo pmset hibernatefile /var/vm/sleepimage
+```
+Once you are back in macOS, restore the default values for your SMBIOS, then reboot:
+```
+sudo pmset restoredefaults
+sudo pmset -a hibernatemode 25
+```
+
+It's also a good idea to reset the NVRAM before rebooting into macOS. To do so, press the space bar in the OpenCore picker and use the arrow keys to select `Reset NVRAM`.
 </details>
 
 <details>
