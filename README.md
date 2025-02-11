@@ -205,10 +205,9 @@ sudo rm /Library/Preferences/com.apple.PowerManagement*
 sudo rm /var/vm/sleepimage
 sudo pmset hibernatefile /var/vm/sleepimage
 ```
-Once you are back in macOS, restore the default values for your SMBIOS, then reboot:
+Once you are back in macOS, restore the default values for your SMBIOS, then reboot once more:
 ```
 sudo pmset restoredefaults
-sudo pmset -a hibernatemode 25
 ```
 
 It's also a good idea to reset the NVRAM before rebooting into macOS. To do so, press the space bar in the OpenCore picker and use the arrow keys to select `Reset NVRAM`.
