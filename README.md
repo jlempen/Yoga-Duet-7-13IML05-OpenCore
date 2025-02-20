@@ -71,12 +71,12 @@ This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [
 ## What works
 - [x] CPU power management
 - [x] CPU SpeedStep
-- [x] iGPU with full acceleration (`AAPL,ig-platform-id 0400A53E`, `device-id A53E0000`)
+- [x] iGPU with full acceleration (`AAPL,ig-platform-id 0900A53E`, `device-id 9B3E0000`)
 - [x] SSD drive
-- [x] Sleep and wake by closing/opening the keyboard/trackpad cover (hibernatemode 0 and 3)
-- [x] Sleep by selecting "Sleep" in the Apple Menu and wake by pressing the power button (hibernatemode 0 and 3)
-- [x] Hibernate and wake by pressing the power button (hibernatemode 25)
-- [x] Automatic transition from Sleep to Hibernate (hibernatemode 3)
+- [x] Sleep and wake by closing/opening the keyboard/trackpad cover (`hibernatemode 0` and `hibernatemode 3`)
+- [x] Sleep by selecting "Sleep" in the Apple Menu and wake by pressing the power button (`hibernatemode 0` and `hibernatemode 3`)
+- [x] Hibernate and wake by pressing the power button (`hibernatemode 25`)
+- [x] Automatic transition from Sleep to Hibernate (`hibernatemode 3`)
 - [x] USB-C ports with hotplug
 - [x] WLAN
 - [x] Bluetooth
@@ -85,7 +85,7 @@ This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [
 - [x] Headphones output
 - [x] Power and volume keys on the tablet
 - [x] Trackpad with native multi-touch gestures
-- [x] Touchscreen
+- [x] Touchscreen with native multi-touch gestures
 - [x] Battery percentage and cycle count
 - [x] USB Type-C Power Delivery
 </details>
