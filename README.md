@@ -73,7 +73,10 @@ This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [
 - [x] CPU SpeedStep
 - [x] iGPU with full acceleration (`AAPL,ig-platform-id 0400A53E`, `device-id A53E0000`)
 - [x] SSD drive
-- [x] Sleep/hibernate and wake
+- [x] Sleep and wake by closing/opening the keyboard/trackpad cover (hibernatemode 0 and 3)
+- [x] Sleep by selecting "Sleep" in the Apple Menu and wake by pressing the power button (hibernatemode 0 and 3)
+- [x] Hibernate and wake by pressing the power button (hibernatemode 25)
+- [x] Automatic transition from Sleep to Hibernate (hibernatemode 3)
 - [x] USB-C ports with hotplug
 - [x] WLAN
 - [x] Bluetooth
@@ -93,7 +96,6 @@ This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [
 ## What needs some more work
 - [ ] MicroSD Card Reader
 - [ ] Native media keys on the keyboard cover
-- [ ] Sometimes, the keyboard needs to be closed for a few seconds and opened again to wake up the display after wake from sleep
 - [ ] Accelerometers, gyroscope
 </details>
 
