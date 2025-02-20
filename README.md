@@ -93,6 +93,7 @@ This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [
 ## What needs some more work
 - [ ] MicroSD Card Reader
 - [ ] Native media keys on the keyboard cover
+- [ ] Sometimes, the keyboard needs to be closed for a few seconds and opened again to wake up the display after wake from sleep
 - [ ] Accelerometers, gyroscope
 </details>
 
