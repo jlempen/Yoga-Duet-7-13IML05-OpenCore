@@ -75,7 +75,8 @@ This repository uses the unofficial OpenCore_NO_ACPI_Build fork of OpenCore by [
 - [x] SSD drive
 - [x] Sleep and wake by closing/opening the keyboard/trackpad cover (`hibernatemode 0` and `hibernatemode 3`)
 - [x] Sleep by selecting "Sleep" in the Apple Menu and wake by pressing the power button (`hibernatemode 0` and `hibernatemode 3`)
-- [x] Hibernate and wake by pressing the power button (`hibernatemode 25`)
+- [x] Hibernate by closing the keyboard/trackpad cover and wake by pressing the power button (`hibernatemode 25`)
+- [x] Hibernate by selecting "Sleep" in the Apple Menu and wake by pressing the power button (`hibernatemode 25`)
 - [x] Automatic transition from Sleep to Hibernate (`hibernatemode 3`)
 - [x] USB-C ports with hotplug
 - [x] WLAN
