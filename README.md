@@ -217,7 +217,7 @@ It's also a good idea to reset the NVRAM before rebooting into macOS. To do so, 
   <summary>Enabling native HiDPI display settings in macOS</summary>
   
 ## Enabling native HiDPI display settings in macOS
-On the installed macOS system, the default display resolution is already "Retina", as the native 3000x2000 resolution is scaled down to 1500x1000. To enable a few more native HiDPI settings in the Display Preferences of macOS, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(6) 3000x2000 Display`.
+The native resolution of the Yoga Duet 7 is 2160x1350, which represents an aspect ratio of 16:10 like on all Intel MacBooks. However, there has never been a MacBook with this odd resolution, so we have to enable a few more native HiDPI settings in the Display Preferences of macOS. To do so, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(3) 1920x1200 Display`.
 I also recommend downloading and installing [BetterDisplay](https://github.com/waydabber/BetterDisplay) to change and manage the display resolutions on the Yoga Duet 7 13IML05.
 </details>
 
@@ -272,9 +272,9 @@ For some odd reason, all the native media keys on the keyboard cover start worki
 
 <img width="282" alt="Display Rotation Menu" src="https://github.com/user-attachments/assets/ac058eda-6a75-4979-9f3c-907a8837f07f">
 
-The first time you rotate the display to a portrait orientation, the resolution is set to 1280x1920, which is way too small for the SGO2's display. You'll need to head over to the `Displays` tab in the `System Settings` and set the only other available resolution, 640x960, which is quite perfect on our Yoga Duet 7 in portrait orientation.
+However, you'll need to set the resolution to 2160x1350 before rotating the display to a portrait mode, else the display will go blank. Moreover, when you rotate the display to a portrait orientation, the resolution is set to 1350x2160, which is way too small for the Yoga Duet's display. I have yet to find a way to add more resolutions for the portrait orientation.
 
-However, once the display is in portrait orientation, it is very likely that the menu bar will not be able to show the Display Rotation Menu widget anymore because there's not enough space to display every widget in the narrow portrait-mode menu bar. To fix this, hold down the `Command` key while dragging the Display Rotation Menu widget next to the macOS `Control Center` widget. If there is still not enough space to show the widget, you could also change the size of the clock by disabling the `Show date` and/or `Show the day of the week` items or even change the style of the clock to `Analog` in the `Clock Options` of macOS.
+Once the display is in portrait orientation, it is very likely that the menu bar will not be able to show the Display Rotation Menu widget anymore because there's not enough space to display every widget in the narrow portrait-mode menu bar. To fix this, hold down the `Command` key while dragging the Display Rotation Menu widget next to the macOS `Control Center` widget. If there is still not enough space to show the widget, you could also change the size of the clock by disabling the `Show date` and/or `Show the day of the week` items or even change the style of the clock to `Analog` in the `Clock Options` of macOS.
 
 [Download Mage Software's Display Rotation Menu v1.5](https://www.magesw.com/displayrotation/DisplayRotationMenu_1.5.zip)
 
