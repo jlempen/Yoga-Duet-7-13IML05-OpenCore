@@ -2,12 +2,33 @@
  macOS on the Lenovo Yoga Duet 7 13IML05 thanks to [Acidanthera's OpenCore bootloader](https://github.com/acidanthera/OpenCorePkg) 
 
 ![OpenCore logo](https://github.com/acidanthera/OpenCorePkg/raw/master/Docs/Logos/OpenCore_with_text_Small.png)
-  
+
+> [!WARNING]
+> ### Installing or upgrading to macOS Tahoe
+>
+> As of January 2026, the Type Cover works in the installer and on the installed system, but it causes a kernel panic on restart, shutdown and when detaching and attaching the Type Cover to the Yoga Duet 7. While working on a fix, I recommend using an external USB keyboard and mouse to complete the upgrade or install of macOS Tahoe. It is abolutely possible to install or upgrade to Tahoe with the Type Cover attached, but keep in mind that you'll have to forcefully shutdown the Yoga Duet 7 everytime the installer attempts to reboot and hangs due to the kernel panic.
+> 
+> When  <ins>**upgrading**</ins> your existing installation to macOS Tahoe, you <ins>**MUST**</ins> log out of your `Apple Account` (iCloud) before proceeding with the upgrade. Furthermore make sure you <ins>**DESELECT**</ins> the option to enable `FileVault` disk encryption in the installer and do not sign into your `Apple Account` (iCloud) until the installer is done and you reach the desktop. Failing to do so will eventually encrypt your disk and prevent you from unlocking your disk with your password on restart.
+>
+> If `FileVault` disk encryption is enabled in your existing installation of macOS and you wish to keep it enabled in macOS Tahoe, then [carefully read the section below](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/tree/main#fixing-filevault-when-upgrading-to-macos-tahoe) before proceeding with the upgrade.
+>
+> When doing a <ins>**clean install**</ins> of macOS Tahoe, make sure you <ins>**DESELECT**</ins> the option to enable `FileVault` disk encryption in the installer and do not sign into your `Apple Account` (iCloud) until the installer is done and you reach the desktop. Failing to do so will eventually encrypt your disk and prevent you from unlocking your disk with your password on restart.
+>
+> If you wish to enable `FileVault` disk encryption in macOS Tahoe, [carefully read the section below](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/tree/main#fixing-filevault-when-upgrading-to-macos-tahoe).
+
+## Latest News
+* (20260115) Added the `apfs_aligned.efi` driver to fix `FileVault` when upgrading to macOS Tahoe ([see section below](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/tree/main#fixing-filevault-when-upgrading-to-macos-tahoe)).
+* (20260115) Added resources and instructions to enable `AirportItlwm.kext` on macOS Sequoia and Tahoe ([see section below](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/tree/main?tab=readme-ov-file#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe)).
+* (20260115) Fixing audio in macOS Tahoe ([see section below](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/tree/main#fixing-audio-on-macos-tahoe)).
+* (20260115) With the stuff merged today, `macOS Tahoe` installs and runs quite nicely on the Yoga Duet 7. At the moment, restarting or shutting down the system will cause a kernel panic. Likewise when detaching and attaching the Type Cover.
+* (20260115) New Bluetooth fixes for `macOS Sequoia` and hopefully `macOS Tahoe` as well.
+* (20260115) Recent Linux distros such as `Fedora 43` should now appear in the OpenCore picker thanks to updated `btrfs_x64.efi` and `ext4_x64.efi` filesystem drivers.
+
 ## Software Specifications
 | Software         | Version                            |
 | ---------------- | ---------------------------------- |
-| Target OS        | Apple macOS 15 Sequoia, 14 Sonoma and 13 Ventura |
-| OpenCore         | [MOD-OC v1.0.4](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.4_3889c5a/OpenCore-Mod-1.0.4-RELEASE.zip) |
+| Target OS        | Apple macOS 26 Tahoe, 15 Sequoia, 14 Sonoma and 13 Ventura |
+| OpenCore         | [MOD-OC v1.0.7](https://github.com/wjz304/OpenCore_NO_ACPI_Build/releases/download/1.0.7_ffbd7f5/OpenCore-Mod-1.0.7-RELEASE.zip) |
 | SMBIOS           | MacBookPro16,2 |
 | UEFI Firmware    | ERCN32WW |
 | SSD format       | APFS file system, GPT partition table |
@@ -18,7 +39,7 @@ The Yoga Duet 7 13IML05 is a nearly perfect Hackintosh tablet. Its 13-inch displ
 The Yoga Duet 7 13IML05 works great as a macOS tablet. It won't entirely replace an iPad or even an Android tablet, but once set up properly, macOS is actually quite a nice tablet OS and almost on par with the Windows tablet experience. All the fancy Trackpad gestures available on macOS work on the Touchscreen as well and are very smooth and reliable. Folding the removable keyboard cover behind the tablet disables the keyboard and trackpad and folding it to the laptop position again re-enables both of them.
 
 > [!TIP]
-> I recommend installing `macOS 13 Ventura` rather than the newer `macOS 14 Sonoma` or `macOS 15 Sequoia`. The builtin Intel Wireless chip works almost perfectly with Apple's iServices and Continuity features on Ventura while those features are partially broken at the moment on newer versions of macOS.
+> As the Type Cover causes a kernel panic on shutdown, reboot and when detaching or attaching it to the Yoga Duet 7, I highly recommend not to upgrade to macOS Tahoe for the time being. macOS Sequoia works great though.
 
 > [!TIP]
 > To boot from the USB stick containing the macOS installer, power on your Yoga Duet 7 13IML05 and press and hold the `F12 Key` as soon as the Lenovo logo is displayed, then choose the USB stick in the list.
@@ -35,9 +56,12 @@ This repository is neither a howto nor an installation manual. Using these files
 ## Recommendations
 I recommend completely erasing the device's SSD by creating a new GPT partition table before attempting to install macOS, as it makes the installation process much easier. You may use any Linux live ISO with a partitioning tool such as `GParted` or `KPartition` to erase the SSD.
 
-`AirportItlwm_Ventura.kext`, `AirportItlwm_Sonoma14.0.kext` and `AirportItlwm_Sonoma14.4.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are required to enable the Wifi chip. This EFI will dynamically load the appropriate kext for macOS Ventura or Sonoma depending on the running kernel. No need to manually replace the kext file when updating your version of macOS. 
+`AirportItlwm-Ventura.kext`, `AirportItlwm-Sonoma140.kext`, `AirportItlwm-Sonoma144.kext` and `AirportItlwm-Sequoia-Tahoe.kext` from the [OpenIntelWireless repo](https://github.com/OpenIntelWireless/itlwm) are drivers required to enable the Wifi chip. This EFI will dynamically load the appropriate kext for macOS Ventura, Sonoma, Sequoia or Tahoe depending on the running kernel. No need to manually replace the kext file when updating your version of macOS. 
 
-As the Intel Wifi chip does not yet work with `AirportItlwm.kext` in macOS Sequoia, you'll need to use `Itlwm.kext` and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases) to connect to a Wifi network. You'll find the latest stable `HeliPort.dmg` in the [Tools folder](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/blob/main/Tools/HeliPort_v1.5.dmg) of this repo. This EFI will dynamically load `Itlwm.kext` instead of `AirportItlwm.kext` when you boot into macOS Sequoia.
+In macOS Sequoia and Tahoe, you'll need to apply root patches with [Laobamac's OCLP-Mod Patcher](https://github.com/laobamac/OCLP-Mod/releases) once the OS is up and running in order to enable the Intel Wifi chip. [Head over to the instructions.](https://github.com/jlempen/Surface-Go-2-OpenCore/tree/main?tab=readme-ov-file#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe).
+
+the `Itlwm.kext` driver and its companion app [HeliPort](https://github.com/OpenIntelWireless/HeliPort/releases) are included but disabled in this EFI for those who prefer to connect to their Wifi network this way. You'll find the latest stable `HeliPort.dmg` in the [Tools folder](https://github.com/jlempen/Surface-Go-2-OpenCore/blob/main/Tools/HeliPort.dmg) of this repo.
+Windows and Linux should be detected automagically by the OpenCore boot loader even when installed after macOS.
 
 Windows and Linux should be detected automagically by the OpenCore boot loader even when installed after macOS.
 
@@ -218,10 +242,102 @@ It's also a good idea to reset the NVRAM before rebooting into macOS. To do so, 
 </details>
 
 <details>
+  <summary>Enabling the Intel Wireless Card in macOS Sequoia and Tahoe</summary>
+  
+## Enabling the Intel Wireless Card in macOS Sequoia and Tahoe
+
+### Using the AirportItlwm.kext driver and root patching
+It is now possible to have Intel WiFi with native Airport features on macOS Sequoia and Tahoe by enabling the `AirportItlwm.kext` driver for macOS Ventura provided by [the OpenIntelWireless project](https://openintelwireless.github.io/). 
+
+`AirportItlwm.kext` uses Apple's IO80211Family. It provides certain Airport features but lacks stability compared with `itlwm.kext` due to the ambiguity of reverse engineering.
+
+To enable the `AirportItlwm.kext` driver, download and install the latest release of [Laobamac's OCLP-Mod Patcher](https://github.com/laobamac/OCLP-Mod/releases).
+
+Launch the OCLP-Mod Patcher, this may take a few seconds. As of January 2026, the tool is only available in Chinese.
+
+Now click on the upper right button to select the Root Patching option:
+<img width="712" height="443" alt="Screenshot 2026-01-10 at 00 43 16" src="https://github.com/user-attachments/assets/3af5464a-836b-4f71-a0fc-8ac8bd4af304" />
+
+Then click on the highlighted button or press Enter to start the patching process:
+<img width="712" height="443" alt="Screenshot 2026-01-10 at 00 46 51" src="https://github.com/user-attachments/assets/843687df-655f-47ea-bfc8-5b3f06681756" />
+
+Once the patching is done, click on the highlighted button or press Enter to close the tool and restart your computer. Your Intel wireless card should be working now.
+
+> [!IMPORTANT]
+> You'll need to repeat the above steps after every macOS update!
+
+### Using the Itlwm.kext driver
+`itlwm.kext` uses Apple's IOEthernet rather than IO80211. It is purely based on open-source resources, provides a stabler and faster performance, and the ability to unload on Kernels that use prelined kernel.
+
+To enable Intel WiFi with the `itlwm.kext` driver, open the `Kernel -> Add` tab in your `config.plist` file.
+
+Enable the following kext:
+```
+itlwm.kext
+```
+
+Then disable the following kexts:
+
+```
+IOSkywalkFamily.kext
+IO80211FamilyLegacy.kext
+IO80211FamilyLegacy.kext/Contents/PlugIns/AirPortBrcmNIC.kext
+AMFIPass.kext
+AirportItlwm-Sequoia-Tahoe.kext
+```
+
+Now head over to the `Kernel -> Block` tab and disable the `com.apple.iokit.IOSkywalkFamily` item.
+
+Then head over to the `NVRAM` tab, select the `7C436110-AB2A-4BBB-A880-FE41995C9F82` UUID and remove the `-amfipassbeta` argument from the `boot-args` key.
+
+Save and close the `config.plist` file and reboot your computer.
+
+Download and install the latest `HeliPort` Intel WiFi client for `itlwm` from [the OpenIntelWireless project](https://openintelwireless.github.io/HeliPort/#download).
+
+Add the `HeliPort` client to your login items and hide the macOS WiFi icon from the Menu Bar.
+</details>
+
+<details>
+  <summary>Fixing audio on macOS Tahoe</summary>
+  
+## Fixing audio on macOS Tahoe
+
+### By root patching
+As Apple removed the `AppleHDA.kext` from macOS Tahoe, [Acidanthera's AppleALC.kext](https://github.com/acidanthera/AppleALC) won't work on macOS Tahoe out of the box and audio is broken. To fix this, simply run [Laobamac's OCLP-Mod Patcher](https://github.com/laobamac/OCLP-Mod/releases) a second time once you have [fixed the Intel wireless card](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/tree/main?tab=readme-ov-file#enabling-the-intel-wireless-card-in-macos-sequoia-and-tahoe) and Internet is working again. The reason for this is that the OCLP-Mod Patcher needs to download the Kernel Development Kit from Apple's servers in order to reinstall the `AppleHDA.kext` on your macOS Tahoe partition and to do so, it needs a working Internet connection. 
+
+### By installing the VoodooHDA audio driver
+Another way to get back the internal speakers and microphone on macOS Tahoe is to install [SergeySlice's VoodooHDA audio driver](https://github.com/CloverHackyColor/VoodooHDA) with [chris1111's convenient VoodooHDA-Tahoe installer](https://github.com/chris1111/VoodooHDA-Tahoe).
+Before installing the VoodooHDA driver, you need to disable the `AppleALC.kext` driver in your `config.plist` file under `Kernel -> Add` and reboot your computer.
+
+Then [grab the latest installer](https://github.com/jlempen/Yoga-Duet-7-13IML05-OpenCore/blob/main/Tools/VoodooHDA-Tahoe.pkg) from the Tools folder in my repository, launch the installer and follow the instructions.
+
+Once you're back in macOS Tahoe after a reboot, head over to `System Settings -> Sound -> Output & Input` and select the `Output` tab, then select `Speaker (Analog)` as your sound output device.
+</details>
+
+<details>
+  <summary>Fixing FileVault when upgrading to macOS Tahoe</summary>
+  
+## Fixing FileVault when upgrading to macOS Tahoe
+If `FileVault` disk encryption is enabled during the upgrade or install of macOS Tahoe, the `FileVault` login window will reject your password and the encrypted disk will remain locked after the first reboot. This is due to Tahoe's APFS filesystem driver not supporting the software `FileVault` disk encryption created with previous versions of macOS.
+
+There are two solutions to this rather annoying issue:
+
+### Enabling the older APFS driver from macOS Sequoia
+Open the `UEFI -> Drivers` tab in your `config.plist` file and enable the `apfs_aligned.efi` driver.
+
+Then head over to the `UEFI -> APFS` tab and disable the `EnableJumpstart` option.
+
+Save and close the `config.plist` file and restart your computer. The `FileVault` login window should now accept your password and unlock the disk.
+
+### Turning off FileVault in the macOS Recovery Console
+Follow the nice instructions [on Jac Timms' website](https://www.ichi.co.uk/blog/removing-file-vault-from-internet-recovery-console).
+</details>
+
+<details>
   <summary>Enabling native HiDPI display settings in macOS</summary>
   
 ## Enabling native HiDPI display settings in macOS
-The native resolution of the Yoga Duet 7 is 2160x1350, which represents an aspect ratio of 16:10 like on all Intel MacBooks. However, there has never been a MacBook with this odd resolution, so we have to enable a few more native HiDPI settings in the Display Preferences of macOS. To do so, download and run the [one-key-hidpi](https://github.com/jlempen/one-key-hidpi) script and select the option `(3) 1920x1200 Display`.
+The native resolution of the Yoga Duet 7 is 2160x1350, which represents an aspect ratio of 16:10 like on all Intel MacBooks. However, there has never been a MacBook with this odd resolution, so we have to enable a few more native HiDPI settings in the Display Preferences of macOS. To do so, download and run [the one-key-hidpi script](https://github.com/xzhih/one-key-hidpi) and select the option `(3) 1920x1200 Display`.
 I also recommend downloading and installing [BetterDisplay](https://github.com/waydabber/BetterDisplay) to change and manage the display resolutions on the Yoga Duet 7 13IML05.
 </details>
 
@@ -307,6 +423,15 @@ Navigate to `System Settings -> Lock Screen -> Accessibility Options -> Accessib
 
 ### Showing/hiding the On-Screen Keyboard with touchscreen gestures
 The most convenient way to show/hide the On-Screen Keyboard when using the Yoga Duet 7 as a tablet is with a touchscreen gesture. Here's how to set this up: navigate to `System Settings -> Accessibility -> Shortcuts` and uncheck every option but `Accessibility Keyboard`. This enables the keyboard shortcut `OPTION-COMMAND-F5` to show/hide the On-Screen Keyboard. Now use [BetterTouchTool](https://folivora.ai/) to assign this keyboard shortcut to a Trackpad/Touchscreen gesture. 
+</details>
+
+<details>
+  <summary>Fixing broken Bluetooth on Wake from Hibernation</summary>
+
+## Fixing broken Bluetooth on Wake from Hibernation
+After the device wakes up from Hibernation, Bluetooth may be broken / unable to connect.
+
+A very simple fix for this issue is to [download and install Bluesnooze](https://github.com/odlp/bluesnooze). Launch the app, enable `Launch at login` and you're done!
 </details>
 
 <details>
